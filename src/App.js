@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'typeface-roboto';
+import { Container } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import NewestContainer from './components/Newest/NewestContainer';
+import TopRatedContainer from './components/TopRated/TopRatedContainer';
+import { BrowserRouter, Route } from "react-router-dom";
+import FilmPageContainer from './components/FilmPage/FilmPageContainer';
+import NavbarContainer from './components/Navbar/NavbarContainer';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Container maxWidth="md">
+        <NavbarContainer />
+        <Typography component="div" style={{ backgroundColor: '#dfe6e9', height: '110%' }} >
+          <Route path='/newest'
+            render={() => <NewestContainer />} />
+          <Route path='/topRated'
+            render={() => <TopRatedContainer />} />
+          <Route path='/filmPage/:filmId'
+            render={() => <FilmPageContainer />} />
+        </Typography>
+      </Container>
+    </BrowserRouter>
+  )
 }
 
 export default App;
