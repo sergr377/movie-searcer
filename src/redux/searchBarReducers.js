@@ -12,7 +12,7 @@ export const searchReducers = (state = initialState, action) => {
         case GET_SEARCH_FILMS:
             return {
                 ...state,
-                results: action.searchData.results
+                results: action.searchData
             }
         default: return state
     }
@@ -27,7 +27,8 @@ export const searchMoviesThunkCreator = (query = '') => {
     return (dispatch) => {
         console.log('запрос поиска ушел')
         usersAPI.getSearch(query).then(response => {
-            dispatch(searchAC(response.data));
+            response.data.results.splice(6, 14)
+            dispatch(searchAC(response.data.results));
         });
         console.log('запрос поиска прошел')
     }

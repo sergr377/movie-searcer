@@ -1,6 +1,7 @@
 
 const GET_FILM_DETAL = 'GET_FILM_DETAL';
 const GET_FILM_IMAGES = 'GET_FILM_IMAGES';
+const GET_CAST = 'GET_CAST';
 
 let initialState = {
     filmDetail: {
@@ -72,7 +73,9 @@ let initialState = {
             vote_count: 1,
             width: 3840,
         }
-    ]
+    ],
+    castData: [],
+    crueData: []
 }
 
 export const filmPageReducers = (state = initialState, action) => {
@@ -83,12 +86,16 @@ export const filmPageReducers = (state = initialState, action) => {
                 ...state,
                 filmDetail: action.FilmDetal
             }
-    }
-    switch (action.type) {
         case GET_FILM_IMAGES:
             return {
                 ...state,
-                backdrops: action.FilmDetal
+                backdrops: action.FilmImages
+            }
+        case GET_CAST:
+            return {
+                ...state,
+                castData: action.FilmCast.cast,
+                crueData: action.FilmCast.crew
             }
         default: return state
     }
@@ -98,7 +105,10 @@ export const filmPageReducers = (state = initialState, action) => {
 export const newFilmDetalAC = (FilmDetal) => {
     return { type: GET_FILM_DETAL, FilmDetal }
 }
-export const newFilmImagesAC = (FilmDetal) => {
-    return { type: GET_FILM_IMAGES, FilmDetal }
+export const newFilmImagesAC = (FilmImages) => {
+    return { type: GET_FILM_IMAGES, FilmImages }
+}
+export const newCastAC = (FilmCast) => {
+    return { type: GET_CAST, FilmCast }
 }
 

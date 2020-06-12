@@ -18,7 +18,7 @@ const MovieCard = (props) => {
                     />
                 </StyledLinkLight>
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom >
                         {props.original_title}
                     </Typography>
                 </CardContent>

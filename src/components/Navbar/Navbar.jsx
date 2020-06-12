@@ -99,17 +99,17 @@ export default function Navbar(props) {
   const clearField = () => {
     document.getElementById('inputField').value = ''
   }
- 
+
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} onClick={handleClick}>
       <AppBar position="static">
-        <Toolbar className={classes.toolbar}>
+        <Toolbar
+          className={classes.toolbar}>
 
-          <div className={classes.search}>
-
+          <div id={'search'} className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -123,44 +123,44 @@ export default function Navbar(props) {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
+            {/* выпадающий список */}
             <div >
-              <Popper id={id} open={open} anchorEl={document.getElementById('inputField')} onClick={handleClick}>
-                {props.results.map(film =>
-                  <StyledLinkDark to={'/FilmPage/' + (!film ? '' : film.id)}>
-                    {/* {console.log('тест')} */}
-                    <List className={classes.list}>
-                      <ListItem alignItems="flex-start">
-                        <ListItemAvatar>
-                          <Avatar
-                            variant="square"
-                            className={classes.avatar}
-                            alt={!film ? '' : film.original_title}
-                            src={"https://image.tmdb.org/t/p/w58_and_h87_face" + (!film ? '' : film.poster_path)}
-                          />
-                        </ListItemAvatar>
-                        <ListItemText
-                          className={classes.list}
-                          primary={!film ? '' : film.original_title}
-                          secondary={
-                            <React.Fragment>
-                              <Typography
-                                component="span"
-                                variant="body2"
-                                className={classes.inline}
-                                color="textPrimary"
-                              >
-                                Release:
+              <Popper id={id} open={open} anchorEl={document.getElementById('search')} onClick={handleClick}>
+                {
+                  props.results.map(film =>
+                    <StyledLinkDark to={{ pathname: '/FilmPage/' + (!film ? '' : film.id) }}>
+                      <List className={classes.list}>
+                        <ListItem alignItems="flex-start">
+                          <ListItemAvatar>
+                            <Avatar
+                              variant="square"
+                              className={classes.avatar}
+                              alt={!film ? '' : film.original_title}
+                              src={"https://image.tmdb.org/t/p/w58_and_h87_face" + (!film ? '' : film.poster_path)}
+                            />
+                          </ListItemAvatar>
+                          <ListItemText
+                            className={classes.list}
+                            primary={!film ? '' : film.original_title}
+                            secondary={
+                              <React.Fragment>
+                                <Typography
+                                  component="span"
+                                  variant="body2"
+                                  className={classes.inline}
+                                  color="textPrimary"
+                                >
+                                  Release:
                               </Typography>
-                              {!film ? '' : (' ' + (!film.release_date ? 'None' : film.release_date.slice(0, 4)))}
-                            </React.Fragment>
-                          }
-                        />
-                      </ListItem>
-                      <Divider variant="inset" component="li" />
-                    </List>
-                  </StyledLinkDark >
-                )}
-
+                                {!film ? '' : (' ' + (!film.release_date ? 'None' : film.release_date.slice(0, 4)))}
+                              </React.Fragment>
+                            }
+                          />
+                        </ListItem>
+                        <Divider variant="inset" component="li" />
+                      </List>
+                    </StyledLinkDark >
+                  )}
               </Popper>
             </div>
           </div>

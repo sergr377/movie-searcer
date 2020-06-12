@@ -21,14 +21,12 @@ export const usersAPI = {
     getNewest(page) {
         return instance.get(`3/movie/upcoming?api_key=1af88f747dd420376237f5999ac921cc&language=en-US&page=${page}`)
             .then(response => {
-                console.log(response)
                 return response;
             })
     },
     getTopRated(page) {
         return instance.get(`3/movie/top_rated?api_key=1af88f747dd420376237f5999ac921cc&language=en-US&page=${page}`)
             .then(response => {
-                console.log(response)
                 return response;
             })
     },
@@ -39,6 +37,12 @@ export const usersAPI = {
         return instance.get(`3/movie/${id}/images?api_key=1af88f747dd420376237f5999ac921cc&language=en-US&include_image_language=include_image_language%3Den%2Cnull`)
             .then(response => {
                 return response.data.backdrops;
+            })
+    },
+    getCast(id) {
+        return instance.get(`3/movie/${id}/credits?api_key=1af88f747dd420376237f5999ac921cc`)
+            .then(response => {
+                return response.data;
             })
     }
 }
