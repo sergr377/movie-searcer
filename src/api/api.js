@@ -25,7 +25,7 @@ export const usersAPI = {
             })
     },
     getTopRated(page) {
-        return instance.get(`3/movie/top_rated?api_key=1af88f747dd420376237f5999ac921cc&language=en-US&page=${page}`)
+        return instance.get(`3/movie/top_rated?api_key=1af88f747dd420376237f5999ac921cc&language=en-US&page=${page}&region=RU`)
             .then(response => {
                 return response;
             })

@@ -8,10 +8,9 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
-    movieCard: {
-        height: 150,
-        width: 100,
-    },
+    // movieCard: {
+    //     width: '25%',
+    // },
     control: {
         padding: theme.spacing(2),
     },
@@ -31,6 +30,7 @@ export default function CardArea(props) {
     const fetchMoreData = () => {
         props.moreFilms(pageNumber)
     };
+    debugger
     return (
         <div>
             <InfiniteScroll
@@ -44,12 +44,13 @@ export default function CardArea(props) {
                         <Grid container justify="center" spacing={spacing}>
                             {console.log(props)}
                             {props.films.map((data) => (
-                                <Grid key={!data ? '' : data.id} item>
+                                <Grid key={!data ? '' : data.id} item className={classes.movieCard}>
                                     <MovieCard
                                         id={data.id}
-                                        className={classes.movieCard}
                                         original_title={!data ? '' : data.original_title}
                                         poster_path={!data ? '' : data.poster_path}
+                                        vote_average={!data ? '' : data.vote_average}
+                                        release_date={!data ? '' : data.release_date}
                                     />
                                 </Grid>
                             ))}

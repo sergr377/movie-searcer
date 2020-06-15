@@ -47,6 +47,10 @@ const useStyles = makeStyles((theme) => ({
     width: 80,
     height: 165
   },
+  gridOverview: {
+    padding: theme.spacing(2),
+    minHeight: 205
+  },
   actorsGrid: {
     //height: 200,
   },
@@ -76,10 +80,7 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
-  tabsBar: {
-    backgroundColor: theme.palette.background.paper,
-    // width: 500,
-  },
+
   cardContent: {
     padding: 6
   },
@@ -87,6 +88,13 @@ const useStyles = makeStyles((theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
   },
+  tabs: {
+    //  borderBottom: '1px solid #e8e8e8',
+    // backgroundColor: '#1890ff',
+  },
+  tabsBlock: {
+    marginTop: 10
+  }
 }));
 
 
@@ -147,28 +155,28 @@ export default function FilmPage(props) {
                   Дата выхода: {props.film.release_date}
                 </Typography>
               </Grid>
-              <Grid item>
+              {/* <Grid item>
                 <Typography variant="body2" style={{ cursor: 'pointer' }}>
                   Remove
                 </Typography>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Grid>
         </Grid>
         {/*--------------------------------------------------------- Вкладки--------------------------------------------------------- */}
-        <div className={classes.tabsBar}>
-          <AppBar position="static" color="default">
+        <div className={classes.tabsBlock} >
+          <AppBar elevation={0} position="static" color="default" className={classes.tabs}>
             <Tabs
               value={value}
               onChange={handleChange}
-              indicatorColor="primary"
-              textColor="primary"
+              //indicatorColor="primary"
+              textColor="default"
               variant="fullWidth"
               aria-label="full width tabs example"
             >
               <Tab label="Cast" {...a11yProps(0)} />
               <Tab label="Photos" {...a11yProps(1)} />
-              <Tab label="Item Three" {...a11yProps(2)} />
+              <Tab label="Overview" {...a11yProps(2)} />
             </Tabs>
           </AppBar>
         </div>
@@ -226,8 +234,29 @@ export default function FilmPage(props) {
                 </GridList>
               </div>
             </TabPanel>
+            {/*--------------------------------------------------------- overview--------------------------------------------------------- */}
             <TabPanel value={value} index={2} dir={theme.direction}>
-              Item Three
+              <Grid container className={classes.actorsGrid}>
+                <Grid container justify="center" spacing={1} className={classes.gridOverview} >
+                  <Grid item xs>
+                    <Typography variant="body2" gutterBottom>
+                      {props.film.overview}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      <b>Directed By:</b> {(!props.crue[1] ? '' : props.crue.map(data => { if (data.job === 'Director') { return data.name } }))}
+                    </Typography>
+                    {}
+                    <Typography variant="body2" color="textSecondary">
+                      <b> Written By:</b> {(!props.crue[0] ? '' : props.crue.map(data => { if (data.job === 'Screenplay') { return (data.name + ' ') } }) )}
+                    </Typography>
+                    {/* 
+                      In Theaters:	Nov 27, 2019  Wide
+                      On Disc/Streaming:	Jun 12, 2020
+                      Runtime:	130 minutes
+                      Studio: */}
+                  </Grid>
+                </Grid>
+              </Grid>
             </TabPanel>
           </SwipeableViews>
         </div>
