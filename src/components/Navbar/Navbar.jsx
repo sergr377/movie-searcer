@@ -13,6 +13,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import FilmPage from '../FilmPage/FilmPage';
+import SearchBar from './Searchbar';
 
 
 
@@ -82,89 +83,24 @@ const useStyles = makeStyles((theme) => ({
 export default function Navbar(props) {
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(false);
-
-  const requestData = (e) => {
-    requestQuery(e)
-    setAnchorEl(true)
-  }
-
-  const requestQuery = (e) => props.getQuery(e)
-
-  const handleClick = () => {
-    setAnchorEl(false);
-    clearField()
-  };
-
-  const clearField = () => {
-    document.getElementById('inputField').value = ''
-  }
-
-  const open = Boolean(anchorEl);
-  const id = open ? 'simple-popper' : undefined;
-
   return (
-    <div className={classes.root} onClick={handleClick}>
+    <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar
-          className={classes.toolbar}>
-
-          <div id={'search'} className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              id={'inputField'}
-              onChange={requestData}
-              placeholder="Search movie"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-            {/* выпадающий список */}
-            <div >
-              <Popper id={id} open={open} anchorEl={document.getElementById('search')} onClick={handleClick}>
-                {
-                  props.results.map(film =>
-                    <StyledLinkDark to={{ pathname: '/FilmPage/' + (!film ? '' : film.id) }}>
-                      <List className={classes.list}>
-                        <ListItem alignItems="flex-start">
-                          <ListItemAvatar>
-                            <Avatar
-                              variant="square"
-                              className={classes.avatar}
-                              alt={!film ? '' : film.original_title}
-                              src={"https://image.tmdb.org/t/p/w58_and_h87_face" + (!film ? '' : film.poster_path)}
-                            />
-                          </ListItemAvatar>
-                          <ListItemText
-                            className={classes.list}
-                            primary={!film ? '' : film.original_title}
-                            secondary={
-                              <React.Fragment>
-                                <Typography
-                                  component="span"
-                                  variant="body2"
-                                  className={classes.inline}
-                                  color="textPrimary"
-                                >
-                                  Release:
-                              </Typography>
-                                {!film ? '' : (' ' + (!film.release_date ? 'None' : film.release_date.slice(0, 4)))}
-                              </React.Fragment>
-                            }
-                          />
-                        </ListItem>
-                        <Divider variant="inset" component="li" />
-                      </List>
-                    </StyledLinkDark >
-                  )}
-              </Popper>
-            </div>
-          </div>
-
+        <Toolbar className={classes.toolbar}>
+          <SearchBar
+            getQuery={props.getQuery}
+            results={props.results}
+          />
+          
+          {/* <Switch>
+            <Route path='/newest'
+              render={() => <NewestContainer />} />
+            <Route path='/topRated'
+              render={() => <TopRatedContainer />} />
+            <Route path='/filmPage/:filmId'
+              render={() => <FilmPageContainer />} />
+          </Switch>  */}
+          
           <StyledLinkLight to={'/newest'} >
             <Button color="inherit">Newest</Button>
           </StyledLinkLight>

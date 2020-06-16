@@ -13,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
     },
     starIcon: {
         marginRight: 5
+    },
+    vote_average: {
+        paddingBottom: 0
     }
     // styledCard: {
     //     width: '100%'
@@ -42,29 +45,23 @@ const MovieCard = (props) => {
                         src={"https://image.tmdb.org/t/p/w220_and_h330_face/" + props.poster_path}
                     />
                 </StyledLinkLight>
-                <CardContent className={classes.cardContent}>
-                    <Typography className={classes.typography} gutterBottom >
-                        {props.original_title  } <Typography variant="body2" color="textSecondary">
-                            {' (' + releaseDate() + ' )'}
-                        </Typography>
-                    </Typography>
-                    
-                    <Grid item xs container direction="row" >
+                <CardActions className={classes.vote_average}>
+                    <Grid  item xs container direction="row" >
                         <StarIcon className={classes.starIcon} fontSize="small" color="action" />
-                        <Typography variant="body2" color="textSecondary">
+                        <Typography  variant="body1" color="textSecondary">
                             {props.vote_average}
                         </Typography>
                     </Grid>
+                </CardActions>
+                <CardContent className={classes.cardContent}>
+                    <Typography className={classes.typography} gutterBottom >
+                        {props.original_title} <Typography variant="body2" color="textSecondary">
+                            {' (' + releaseDate() + ' )'}
+                        </Typography>
+                    </Typography>
                 </CardContent>
             </CardActionArea>
-            {/* <CardActions>
-                <Button size="small">
-                    Share
-                </Button>
-                <Button size="small"s>
-                    Learn More
-                </Button>
-            </CardActions> */}
+
         </StyledCard>
     )
 }
