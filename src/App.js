@@ -8,16 +8,19 @@ import TopRatedContainer from './components/TopRated/TopRatedContainer';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import FilmPageContainer from './components/FilmPage/FilmPageContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
+import PopularContainer from './components/Popular/PopularContainer';
 
 const App = () => {
   return (
     <BrowserRouter>
       <Container maxWidth="md">
         <NavbarContainer />
-        <Typography component="div" style={{ backgroundColor: '#dfe6e9', height: '110%' }} >
+        <Typography component="div" style={{ backgroundColor: '#dfe6e9', height: '100%', paddingTop: '5px' }} >
           <Switch>
             <Route path='/newest'
               render={() => <NewestContainer />} />
+              <Route path='/popular'
+              render={() => <PopularContainer />} />
             <Route path='/topRated'
               render={() => <TopRatedContainer />} />
             <Route path='/filmPage/:filmId'
@@ -29,4 +32,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App; 

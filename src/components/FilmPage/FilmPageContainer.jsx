@@ -25,37 +25,6 @@ class FilmPageContainer extends React.Component {
             //response.data.crew.splice(6)
             this.props.newCastAC(response);
         });
-
-        // async function m() {
-
-        //     let promise = new Promise((resolve, reject) => {
-
-        //         let filmUrl = this.props.match.params.filmId
-        //         let newFilmUrl = filmUrl
-
-        //         setInterval(
-        //             () => {
-        //                 console.log(newFilmUrl)
-        //                 filmUrl === newFilmUrl ? (newFilmUrl = this.props.match.params.filmId) : resolve(newFilmUrl)
-
-        //             }
-        //             , 3000)
-        //     });
-
-        //     let result = await promise;
-
-        //     usersAPI.getMovie(result).then(response => {
-        //         this.props.newFilmDetalAC(response);
-        //     });
-        //     usersAPI.getImages(this.props.match.params.filmId).then(response => {
-        //         this.props.newFilmImagesAC(response);
-        //     });
-        // }
-
-        // let f = m.bind(this)
-
-        // f();
-        // console.log(this.props)
     }
 
     render() {
@@ -71,7 +40,7 @@ let mapStateToProps = (state) => ({
     film: state.film.filmDetail,
     images: state.film.backdrops,
     cast: state.film.castData,
-    crue: state.film.crueData
+    crue: state.film.crueData,
 })
 
 export default compose(

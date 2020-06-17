@@ -56,7 +56,7 @@ const MovieCard = (props) => {
                 <CardContent className={classes.cardContent}>
                     <Typography className={classes.typography} gutterBottom >
                         {props.original_title} <Typography variant="body2" color="textSecondary">
-                            {' (' + releaseDate() + ' )'}
+                            {' (' + releaseDate() + ')'}
                         </Typography>
                     </Typography>
                 </CardContent>

@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
 export default function SearchBar(props) {
 
     document.addEventListener('click', function (e) {

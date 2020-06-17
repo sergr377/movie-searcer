@@ -30,9 +30,9 @@ export default function CardArea(props) {
     const fetchMoreData = () => {
         props.moreFilms(pageNumber)
     };
-    debugger
+
     return (
-        <div>
+        <div >
             <InfiniteScroll
                 style={style}
                 dataLength={props.films.length}

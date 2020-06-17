@@ -105,10 +105,12 @@ export default function Navbar(props) {
             <Button color="inherit">Newest</Button>
           </StyledLinkLight>
           <StyledLinkLight to={'/topRated'} >
-            <Button color="inherit">top rated</Button>
+            <Button color="inherit">Top rated</Button>
+          </StyledLinkLight>
+          <StyledLinkLight to={'/popular'} >
+            <Button color="inherit">Popular</Button>
           </StyledLinkLight>
           <Button color="inherit">Favorite</Button>
-          <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </div>

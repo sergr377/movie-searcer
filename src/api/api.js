@@ -28,6 +28,12 @@ export const usersAPI = {
         return instance.get(`3/movie/top_rated?api_key=1af88f747dd420376237f5999ac921cc&language=en-US&page=${page}&region=RU`)
             .then(response => {
                 return response;
+            })//https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
+    },
+    getPopular(page) {
+        return instance.get(`3/movie/popular?api_key=1af88f747dd420376237f5999ac921cc&language=en-US&page=${page}&region=RU`)
+            .then(response => {
+                return response;
             })
     },
     getSearch(query) {

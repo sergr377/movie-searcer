@@ -99,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function FilmPage(props) {
+
   const classes = useStyles();
   const filmGenres = props.film.genres.map((g) => (g.name + '  '))
 
@@ -199,7 +200,8 @@ export default function FilmPage(props) {
                           component="img"
                           alt={!data ? '' : data.name}
                           title={!data ? '' : data.name}
-                          src={!data ? '' : "https://image.tmdb.org/t/p/w138_and_h175_face/" + data.profile_path}
+                          src={!data ? '' : 
+                          !"https://image.tmdb.org/t/p/w138_and_h175_face/" + data.profile_path ? "https://image.tmdb.org/t/p/w138_and_h175_face/" + data.profile_path : 'https://m.media-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_UY289_CR46,0,196,250_.png'}
                         />
                         <CardContent className={classes.cardContent}>
                           <Typography gutterBottom variant="subtitle2">
@@ -247,13 +249,17 @@ export default function FilmPage(props) {
                     </Typography>
                     {}
                     <Typography variant="body2" color="textSecondary">
-                      <b> Written By:</b> {(!props.crue[0] ? '' : props.crue.map(data => { if (data.job === 'Screenplay') { return (data.name + ' ') } }) )}
+                      <b> Written By:</b> {(!props.crue[0] ? '' : props.crue.map(data => { if (data.job === 'Screenplay') { return (data.name + ' ') } }))}
                     </Typography>
-                    {/* 
-                      In Theaters:	Nov 27, 2019  Wide
-                      On Disc/Streaming:	Jun 12, 2020
-                      Runtime:	130 minutes
-                      Studio: */}
+                    <Typography variant="body2" color="textSecondary">
+                      Runtime:  {(!props.film.runtime ? '' : props.film.runtime) + ' minutes'}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Budget:  {(!props.film.budget ? '' : props.film.budget) + '$'}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Producer country:  {(!props.film.production_countries[0] ? '' : props.film.production_countries.map(data => { return data.name + ' ' }))}
+                    </Typography>
                   </Grid>
                 </Grid>
               </Grid>
@@ -263,7 +269,7 @@ export default function FilmPage(props) {
       </Paper >
       {/*--------------------------------------------------------- fullSize pic--------------------------------------------------------- */}
       <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-        <CircularProgress color="inherit" />
+        {/* <CircularProgress color="inherit" /> */}
         <Paper className={classes.paperFullSize}>
           <img
             className={classes.fullSizeImg}
@@ -274,8 +280,6 @@ export default function FilmPage(props) {
     </div >
   );
 }
-//https://image.tmdb.org/t/p/w533_and_h300_bestv2/tvjCdVRkaaab2ezM9BctkAOXeyW.jpg
-//https://image.tmdb.org/t/p/original/3RarN70b6lohFJFVUdudXRQF6zi.jpg
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -309,5 +313,4 @@ function a11yProps(index) {
     'aria-controls': `full-width-tabpanel-${index}`,
   };
 }
-
 
