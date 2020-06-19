@@ -90,7 +90,6 @@ export default function SearchBar(props) {
 
     const [anchorEl, setAnchorEl] = React.useState(false);
 
-
     const clearField = () => {
         document.getElementById('inputField').value = ''
     }

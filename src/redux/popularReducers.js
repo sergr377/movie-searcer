@@ -6,7 +6,7 @@ let initialState = {
     pageNumber: -1
 };
 
-export const popularReducers = (state = initialState, action) => {
+const popularReducers = (state = initialState, action) => {
 
     switch (action.type) {
         case GET_POPULAR_FILMS:

@@ -91,7 +91,7 @@ export default function Navbar(props) {
             getQuery={props.getQuery}
             results={props.results}
           />
-          
+
           {/* <Switch>
             <Route path='/newest'
               render={() => <NewestContainer />} />
@@ -100,7 +100,7 @@ export default function Navbar(props) {
             <Route path='/filmPage/:filmId'
               render={() => <FilmPageContainer />} />
           </Switch>  */}
-          
+
           <StyledLinkLight to={'/newest'} >
             <Button color="inherit">Newest</Button>
           </StyledLinkLight>
@@ -110,7 +110,9 @@ export default function Navbar(props) {
           <StyledLinkLight to={'/popular'} >
             <Button color="inherit">Popular</Button>
           </StyledLinkLight>
-          <Button color="inherit">Favorite</Button>
+          <StyledLinkLight to={'/favorite'}>
+            <Button color="inherit">Favorite</Button>
+          </StyledLinkLight>
         </Toolbar>
       </AppBar>
     </div>

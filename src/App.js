@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import FilmPageContainer from './components/FilmPage/FilmPageContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import PopularContainer from './components/Popular/PopularContainer';
+import FavoriteContainer from './components/Favorite/FavoriteContainer';
 
 const App = () => {
   return (
@@ -17,12 +18,16 @@ const App = () => {
         <NavbarContainer />
         <Typography component="div" style={{ backgroundColor: '#dfe6e9', height: '100%', paddingTop: '5px' }} >
           <Switch>
+            <Route exact path='/'
+              render={() => <TopRatedContainer />} />
             <Route path='/newest'
               render={() => <NewestContainer />} />
-              <Route path='/popular'
+            <Route path='/popular'
               render={() => <PopularContainer />} />
             <Route path='/topRated'
               render={() => <TopRatedContainer />} />
+            <Route path='/favorite'
+              render={() => <FavoriteContainer />} />
             <Route path='/filmPage/:filmId'
               component={() => <FilmPageContainer />} />
           </Switch>

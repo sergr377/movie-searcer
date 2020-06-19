@@ -31,7 +31,7 @@ class NewestContainer extends React.Component {
                 pageNumber={this.props.pageNumber}
             />
         </>
-    }
+    } 
 }
 
 let mapStateToProps = (state) => ({

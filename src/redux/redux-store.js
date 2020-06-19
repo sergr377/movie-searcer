@@ -5,6 +5,7 @@ import topRatedReducers from "./topRatedReducers";
 import { filmPageReducers } from "./filmPageReducers";
 import { searchReducers } from "./searchBarReducers";
 import popularReducers from "./popularReducers";
+import favoriteReducers from "./favoriteReducers";
 
 //бывший _state
 let reducers = combineReducers({
@@ -12,7 +13,8 @@ let reducers = combineReducers({
     top: topRatedReducers,
     film: filmPageReducers,
     search: searchReducers,
-    popular: popularReducers 
+    popular: popularReducers,
+    favorite: favoriteReducers
 });
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
