@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { searchMoviesThunkCreator } from '../../redux/searchBarReducers';
 import Navbar from './Navbar';
+import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 
 class NavbarContainer extends React.Component {
@@ -10,12 +12,11 @@ class NavbarContainer extends React.Component {
         this.props.searchMovies()
     }
 
-    getQuery = e => {
+    getQuery = (e) => {
         const value = e.target.value.toLowerCase()
         this.props.searchMovies(value)
     }
-
-
+ 
     render() {
         return <>
             <Navbar
@@ -32,4 +33,7 @@ let mapStateToProps = (state) => ({
     setFilmId: state.film.filmId
 })
 
-export default connect(mapStateToProps, { searchMovies: searchMoviesThunkCreator })(NavbarContainer);
+export default compose(
+    connect(mapStateToProps, { searchMovies: searchMoviesThunkCreator }),
+    withRouter
+)(NavbarContainer);

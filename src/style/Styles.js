@@ -1,8 +1,6 @@
 import styled from "styled-components"
-
-
 import { Button, Divider, Grid, GridListTileBar, TextField, Typography, Card } from "@material-ui/core"
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import InfiniteScroll from "react-infinite-scroll-component"
 
 export const StyledCard = styled(Card)`
@@ -72,11 +70,11 @@ export const StyledDivider = styled(Divider).attrs({
     margin-top: 8px;
   }
 `
-export const StyledLinkLight = styled(NavLink)`
+export const StyledLinkLight = styled(Link)`
   text-decoration: none;
   color: #FFFFFF;
 `
-export const StyledLinkDark = styled(NavLink)`
+export const StyledLinkDark = styled(Link)`
   text-decoration: none;
   color: #2d3436;
 `

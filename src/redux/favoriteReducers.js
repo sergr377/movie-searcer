@@ -32,13 +32,6 @@ const favoriteReducers = (state = initialState, action) => {
     }
 }
 
-// return {
-//     ...state,
-//     storeItem: Object.keys(state.storeItem)
-//       .filter(item => item !== action.payload.key.toString())
-//       .reduce((object, item) => ({...object, [item]: state.storeItem[item]}), {})
-//   } 
-
 export const toFavouritesAC = (filmData) => {
     const filmId = JSON.stringify(filmData.id)
     const serializedFilm = JSON.stringify(filmData)

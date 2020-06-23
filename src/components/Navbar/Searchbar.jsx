@@ -12,6 +12,10 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import FilmPage from '../FilmPage/FilmPage';
+import { useState } from 'react';
+
+// document.getElementById("simple-popper").style.width = document.getElementById('search').offsetWidth
+// console.log(document.getElementById("simple-popper").style.width)
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
         display: 'inline',
     },
     list: {
-        maxWidth: '36ch',
+       // maxWidth: '36ch',
         flexGrow: 1,
         width: '100%',
         backgroundColor: theme.palette.background.paper,
+        padding: 0
     },
     title: {
         flexGrow: 1,
@@ -76,7 +81,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
 export default function SearchBar(props) {
 
     document.addEventListener('click', function (e) {
@@ -88,7 +92,7 @@ export default function SearchBar(props) {
 
     const classes = useStyles();
 
-    const [anchorEl, setAnchorEl] = React.useState(false);
+    const [anchorEl, setAnchorEl] = useState(false);
 
     const clearField = () => {
         document.getElementById('inputField').value = ''
@@ -128,41 +132,40 @@ export default function SearchBar(props) {
             {/* выпадающий список */}
             <div >
                 <Popper id={id} open={open} anchorEl={document.getElementById('search')} onClick={handleClick}>
-                    {
-                        props.results.map(film =>
-                            <StyledLinkDark to={{ pathname: '/FilmPage/' + (!film ? '' : film.id) }}>
-                                <List className={classes.list}>
-                                    <ListItem alignItems="flex-start">
-                                        <ListItemAvatar>
-                                            <Avatar
-                                                variant="square"
-                                                className={classes.avatar}
-                                                alt={!film ? '' : film.original_title}
-                                                src={"https://image.tmdb.org/t/p/w58_and_h87_face" + (!film ? '' : film.poster_path)}
-                                            />
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            className={classes.list}
-                                            primary={!film ? '' : film.original_title}
-                                            secondary={
-                                                <React.Fragment>
-                                                    <Typography
-                                                        component="span"
-                                                        variant="body2"
-                                                        className={classes.inline}
-                                                        color="textPrimary"
-                                                    >
-                                                        Release:
-                                                     </Typography>
-                                                    {!film ? '' : (' ' + (!film.release_date ? 'None' : film.release_date.slice(0, 4)))}
-                                                </React.Fragment>
-                                            }
+                    {props.results.map(film =>
+                        <StyledLinkDark to={{ pathname: '/FilmPage/' + (!film ? '' : film.id) }}>
+                            <List className={classes.list}>
+                                <ListItem className='searchItem' alignItems="flex-start">
+                                    <ListItemAvatar>
+                                        <Avatar
+                                            variant="square"
+                                            className={classes.avatar}
+                                            alt={!film ? '' : film.original_title}
+                                            src={"https://image.tmdb.org/t/p/w58_and_h87_face" + (!film ? '' : film.poster_path)}
                                         />
-                                    </ListItem>
-                                    <Divider variant="inset" component="li" />
-                                </List>
-                            </StyledLinkDark >
-                        )}
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        className={classes.list}
+                                        primary={!film ? '' : film.original_title}
+                                        secondary={
+                                            <React.Fragment>
+                                                <Typography
+                                                    component="span"
+                                                    variant="body2"
+                                                    className={classes.inline}
+                                                    color="textPrimary"
+                                                >
+                                                    Release:
+                                                     </Typography>
+                                                {!film ? '' : (' ' + (!film.release_date ? 'None' : film.release_date.slice(0, 4)))}
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </ListItem>
+                                <Divider variant="inset" component="li" />
+                            </List>
+                        </StyledLinkDark >
+                    )}
                 </Popper>
             </div>
         </div>

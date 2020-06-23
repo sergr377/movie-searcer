@@ -3,38 +3,48 @@ import { Typography, Button, Card, CardActionArea, CardActions, CardContent, Car
 import { StyledCard, StyledLinkLight } from '../../style/Styles';
 import { makeStyles } from '@material-ui/core/styles';
 import StarIcon from '@material-ui/icons/Star';
-import { connect } from 'react-redux';
-import { favoriteFilmsAC } from '../../redux/favoriteReducers';
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
-    typography: {
-        fontSize: 15,
+    typographyName: {
+        fontSize: '1.7vh',
     },
-    cardContent: {
-        padding: 6
+    typographyScore: {
+        fontSize: '1.8vh',
+    },
+    typographyDate: {
+        fontSize: '1.7vh',
     },
     starIcon: {
+        fontSize: '2.4vh',
         marginRight: 5
     },
+    cardContent: {
+        padding: '0.8vh',
+        minHeight: '8vh'
+    },
     vote_average: {
+        paddingTop: '1vh',
         paddingBottom: 0
     },
     bookmark: {
         marginLeft: 'auto',
+        fontSize: '2.7vh',
+        cursor: 'pointer'
     },
     bookmarkRed: {
         marginLeft: 'auto',
-        color: '#d63031'
-    }
-    // styledCard: {
-    //     width: '100%'
-    // },
-    // cardMedia: {
-    //     width: '50%'
-    // }
+        color: '#d63031',
+        fontSize: '2.7vh',
+        cursor: 'pointer'
+    },
+    cardActionArea: {
+        cursor: 'default',
+        height: ' 45vh',
+        width: '22vh'
+    },
 }))
 
 const MovieCard = (props) => {
@@ -44,6 +54,17 @@ const MovieCard = (props) => {
     const releaseDate = () => {
         return props.release_date.slice(0, 4)
     }
+
+    const originalName = () => {
+
+        if (props.original_title.length > 40) {
+            return props.original_title.slice(0, 40) + '...'
+        } else {
+            return props.original_title
+        }
+    }
+
+
 
     const [count, setCount] = useState(props.isFavorite);
 
@@ -57,10 +78,9 @@ const MovieCard = (props) => {
         }
     }
 
-
     return (
-        <StyledCard className={classes.styledCard} >
-            <CardActionArea>
+        <StyledCard >
+            <CardActionArea className={classes.cardActionArea} >
                 <StyledLinkLight to={'/FilmPage/' + props.id}>
                     <CardMedia
                         className={classes.cardMedia}
@@ -72,11 +92,11 @@ const MovieCard = (props) => {
                 </StyledLinkLight>
                 <CardActions className={classes.vote_average} >
                     <Grid container direction="row" >
-                        <StarIcon className={classes.starIcon} fontSize="small" color="action" />
-                        <Typography variant="body1" color="textSecondary">
-                            {props.vote_average}
+                        <StarIcon className={classes.starIcon} color="action" />
+                        <Typography className={classes.typographyScore} variant="body1" color="textSecondary">
+                            {props.vote_average ? props.vote_average : 'No score yet'}
                         </Typography>
-                        <Tooltip title="Click to add to favorite">
+                        <Tooltip title={count ? "Remove from favorites" : "Add to favorites"}>
                             {count ?
                                 <BookmarkIcon className={classes.bookmarkRed} onClick={toggle(props.data)} />
                                 : <BookmarkBorderIcon color="action" className={classes.bookmark} onClick={toggle(props.data)} />}
@@ -84,9 +104,9 @@ const MovieCard = (props) => {
                     </Grid>
                 </CardActions>
                 <CardContent className={classes.cardContent}>
-                    <Typography className={classes.typography} gutterBottom >
-                        {props.original_title}
-                        <Typography variant="body2" color="textSecondary">
+                    <Typography className={classes.typographyName} gutterBottom display='inline' >
+                        {originalName()}
+                        <Typography className={classes.typographyDate} variant="body2" color="textSecondary">
                             {' (' + releaseDate() + ')'}
                         </Typography>
                     </Typography>
@@ -95,7 +115,6 @@ const MovieCard = (props) => {
         </StyledCard>
     )
 }
-
 
 export default MovieCard
 

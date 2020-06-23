@@ -9,6 +9,8 @@ import { connect } from 'react-redux';
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
+        justifyContent: 'center'
+
     },
     // movieCard: {
     //     width: '25%',
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const style = {
-    display: "grid"
+    display: "grid",
 }
 
 function CardArea(props) {
@@ -33,8 +35,6 @@ function CardArea(props) {
     };
 
     const isFavorite = (filmsData, film) => {
-        console.log(filmsData.includes(film))
-        debugger
         return filmsData.includes(film)
     }
 
@@ -45,9 +45,10 @@ function CardArea(props) {
                 dataLength={props.films.length}
                 next={fetchMoreData}
                 hasMore={true}
-                loader={<h4>Loading...</h4>}>
+                loader={<h4></h4>}
+                >
                 <Grid container className={classes.root}>
-                    <Grid item xs={12}>
+                    <Grid item xs={13}>
                         <Grid container justify="center" spacing={spacing}>
                             {props.films.map((data) => (
                                 <Grid key={!data ? '' : data.id} item className={classes.movieCard}>
