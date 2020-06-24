@@ -2,8 +2,6 @@ import React from 'react';
 import Favorite from './Favorite';
 import { connect } from 'react-redux';
 
-
-
 class FavoriteContainer extends React.Component {
 
     render() {

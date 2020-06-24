@@ -1,4 +1,3 @@
-
 const SAVE_FILM = 'SAVE_FILM'
 const REMOVE_FILM = 'REMOVE_FILM'
 
@@ -38,7 +37,6 @@ export const toFavouritesAC = (filmData) => {
     localStorage.setItem(filmId, serializedFilm)
     return { type: SAVE_FILM, filmData }
 }
-
 
 export const removeFavouritesAC = (filmData) => {
     localStorage.removeItem(filmData.id)

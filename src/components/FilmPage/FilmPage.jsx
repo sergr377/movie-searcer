@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import { GridList, GridListTileBar, GridListTile, CardMedia, CardContent, CardActionArea, CircularProgress, Backdrop } from '@material-ui/core';
+import { GridList, GridListTileBar, GridListTile, CardMedia, CardContent, Backdrop } from '@material-ui/core';
 
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -23,13 +23,11 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     margin: 'auto',
     maxWidth: 500,
-    //float:'left'
   },
   paper2: {
     padding: theme.spacing(2),
     marginTop: 5,
     maxWidth: 800,
-    // height: 250,
     margin: 'auto',
   },
   paperFullSize: {
@@ -51,10 +49,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     minHeight: 205
   },
-  actorsGrid: {
-    //height: 200,
-  },
-  image: {},
   img: {
     margin: 'auto',
     display: 'block',
@@ -70,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
   },
   title: {
@@ -80,17 +73,12 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
-
   cardContent: {
     padding: 6
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
-  },
-  tabs: {
-    //  borderBottom: '1px solid #e8e8e8',
-    // backgroundColor: '#1890ff',
   },
   tabsBlock: {
     marginTop: 10
@@ -103,7 +91,7 @@ export default function FilmPage(props) {
   const classes = useStyles();
   const filmGenres = props.film.genres.map((g) => (g.name + '  '))
 
-  //свойства вкладок
+  // tabs
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
@@ -115,7 +103,7 @@ export default function FilmPage(props) {
     setValue(index);
   };
 
-  // свойства fullPhotos
+  //  fullPhotos
   const [open, setOpen] = React.useState(false);
   const handleClose = () => {
     setOpen(false);
@@ -156,24 +144,17 @@ export default function FilmPage(props) {
                   Дата выхода: {props.film.release_date}
                 </Typography>
               </Grid>
-              {/* <Grid item>
-                <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                  Remove
-                </Typography>
-              </Grid> */}
             </Grid>
           </Grid>
         </Grid>
-        {/*--------------------------------------------------------- Вкладки--------------------------------------------------------- */}
+        {/*--------------------------------------------------------- tabs--------------------------------------------------------- */}
         <div className={classes.tabsBlock} >
           <AppBar elevation={0} position="static" color="default" className={classes.tabs}>
             <Tabs
               value={value}
               onChange={handleChange}
-              //indicatorColor="primary"
               textColor="default"
               variant="fullWidth"
-              aria-label="full width tabs example"
             >
               <Tab label="Cast" {...a11yProps(0)} />
               <Tab label="Photos" {...a11yProps(1)} />
@@ -189,7 +170,7 @@ export default function FilmPage(props) {
             index={value}
             onChangeIndex={handleChangeIndex}
           >
-            {/* ---------------------------------------------------------Актеры--------------------------------------------------------- */}
+            {/* ---------------------------------------------------------actors--------------------------------------------------------- */}
             <TabPanel value={value} index={0} dir={theme.direction}>
               <Grid container className={classes.actorsGrid}>
                 <Grid container justify="center" spacing={1} >
@@ -198,14 +179,14 @@ export default function FilmPage(props) {
                       <Paper className={classes.paperCast} >
                         <CardMedia
                           component="img"
-                          alt={!data ? '' : data.name}
-                          title={!data ? '' : data.name}
-                          src={!data ? '' : 
-                          !"https://image.tmdb.org/t/p/w138_and_h175_face/" + data.profile_path ? "https://image.tmdb.org/t/p/w138_and_h175_face/" + data.profile_path : 'https://m.media-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_UY289_CR46,0,196,250_.png'}
+                          alt={data.name}
+                          title={data.name}
+                          src={!data ? '' :
+                            !"https://image.tmdb.org/t/p/w138_and_h175_face/" + data.profile_path ? "https://image.tmdb.org/t/p/w138_and_h175_face/" + data.profile_path : 'https://m.media-amazon.com/images/G/01/IMDbPro/images/default_name._V142442227_UY289_CR46,0,196,250_.png'}
                         />
                         <CardContent className={classes.cardContent}>
                           <Typography gutterBottom variant="subtitle2">
-                            {!data ? '' : data.name}
+                            {data.name}
                           </Typography>
                         </CardContent>
                       </Paper>
@@ -215,7 +196,7 @@ export default function FilmPage(props) {
               </Grid>
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
-              {/*--------------------------------------------------------- Слайдер--------------------------------------------------------- */}
+              {/*--------------------------------------------------------- slider--------------------------------------------------------- */}
               <div className={classes.slider}>
                 <GridList className={classes.gridList} cols={2.5}>
                   {props.images.map((tile) => (
@@ -225,7 +206,6 @@ export default function FilmPage(props) {
                         alt={tile.file_path}
                         onClick={handleToggle} />
                       <GridListTileBar
-                        //  title={tile.file_path}
                         classes={{
                           root: classes.titleBar,
                           title: classes.title,
@@ -252,10 +232,10 @@ export default function FilmPage(props) {
                       <b> Written By:</b> {(!props.crue[0] ? '' : props.crue.map(data => { if (data.job === 'Screenplay') { return (data.name + ' ') } }))}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
-                      Runtime:  {(!props.film.runtime ? '' : props.film.runtime) + ' minutes'}
+                      Runtime:  {( props.film.runtime) + ' minutes'}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
-                      Budget:  {(!props.film.budget ? '' : props.film.budget) + '$'}
+                      Budget:  {(props.film.budget) + '$'}
                     </Typography>
                     <Typography variant="body2" color="textSecondary">
                       Producer country:  {(!props.film.production_countries[0] ? '' : props.film.production_countries.map(data => { return data.name + ' ' }))}
@@ -269,7 +249,6 @@ export default function FilmPage(props) {
       </Paper >
       {/*--------------------------------------------------------- fullSize pic--------------------------------------------------------- */}
       <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
-        {/* <CircularProgress color="inherit" /> */}
         <Paper className={classes.paperFullSize}>
           <img
             className={classes.fullSizeImg}

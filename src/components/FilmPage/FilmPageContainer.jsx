@@ -12,8 +12,6 @@ import { compose } from 'redux';
 class FilmPageContainer extends React.Component {
 
     componentDidMount() {
-        debugger
-        console.log('FilmPageContainer запрос ушел')
         usersAPI.getMovie(this.props.match.params.filmId).then(response => {
             this.props.newFilmDetalAC(response);
         });
@@ -22,7 +20,6 @@ class FilmPageContainer extends React.Component {
         });
         usersAPI.getCast(this.props.match.params.filmId).then(response => {
             response.cast.splice(6)
-            //response.data.crew.splice(6)
             this.props.newCastAC(response);
         });
     }

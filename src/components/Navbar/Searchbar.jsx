@@ -3,7 +3,6 @@ import { InputBase, fade, makeStyles } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { StyledLinkDark } from '../../style/Styles';
 import Popper from '@material-ui/core/Popper';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
@@ -11,11 +10,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
-import FilmPage from '../FilmPage/FilmPage';
 import { useState } from 'react';
-
-// document.getElementById("simple-popper").style.width = document.getElementById('search').offsetWidth
-// console.log(document.getElementById("simple-popper").style.width)
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'inline',
     },
     list: {
-       // maxWidth: '36ch',
         flexGrow: 1,
         width: '100%',
         backgroundColor: theme.palette.background.paper,
@@ -61,22 +55,16 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    //настройка цвета элементов внутри 
     inputRoot: {
         color: 'inherit',
     },
-    //настройка положения элементов внутри других
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('md')]: {
             width: '20ch',
-        },
-        avatar: {
-
         }
     },
 }));

@@ -8,9 +8,6 @@ const instance = axios.create(
 )
 
 const api = 'api_key=1af88f747dd420376237f5999ac921cc'
-//https://api.themoviedb.org/3/movie/157336?api_key={api_key}
-
-//пофиксить стену кода api
 
 export const usersAPI = {
     getMovie(id) {
@@ -29,7 +26,7 @@ export const usersAPI = {
         return instance.get(`3/movie/top_rated?${api}&language=en-US&page=${page}&region=RU`)
             .then(response => {
                 return response;
-            })//https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
+            })
     },
     getPopular(page) {
         return instance.get(`3/movie/popular?${api}&language=en-US&page=${page}&region=RU`)

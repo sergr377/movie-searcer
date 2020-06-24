@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Tooltip } from '@material-ui/core';
+import { Typography, CardActionArea, CardActions, CardContent, CardMedia, Grid, Tooltip } from '@material-ui/core';
 import { StyledCard, StyledLinkLight } from '../../style/Styles';
 import { makeStyles } from '@material-ui/core/styles';
 import StarIcon from '@material-ui/icons/Star';
@@ -7,7 +7,7 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 import { useState } from 'react';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     typographyName: {
         fontSize: '1.7vh',
     },
@@ -42,8 +42,6 @@ const useStyles = makeStyles((theme) => ({
     },
     cardActionArea: {
         cursor: 'default',
-        height: ' 45vh',
-        width: '22vh'
     },
 }))
 
@@ -56,15 +54,12 @@ const MovieCard = (props) => {
     }
 
     const originalName = () => {
-
         if (props.original_title.length > 40) {
             return props.original_title.slice(0, 40) + '...'
         } else {
             return props.original_title
         }
     }
-
-
 
     const [count, setCount] = useState(props.isFavorite);
 

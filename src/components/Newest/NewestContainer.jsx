@@ -6,7 +6,6 @@ import { usersAPI } from '../../api/api';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-
 class NewestContainer extends React.Component {
 
     componentDidMount() {
@@ -22,7 +21,6 @@ class NewestContainer extends React.Component {
     }
 
     render() {
-
         return <>
             <Newest
                 newFilms={this.props.newFilms}

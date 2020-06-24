@@ -25,12 +25,10 @@ export const searchAC = (searchData) => {
 
 export const searchMoviesThunkCreator = (query = '') => {
     return (dispatch) => {
-        console.log('запрос поиска ушел')
         usersAPI.getSearch(query).then(response => {
             response.data.results.splice(6, 14)
             dispatch(searchAC(response.data.results));
         });
-        console.log('запрос поиска прошел')
     }
 }
 

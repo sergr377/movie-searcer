@@ -20,8 +20,6 @@ class TopRatedContainer extends React.Component {
         usersAPI.getTopRated(number).then(response => {
             this.props.topFilmsAC(response.data);
         });
-
-        console.log(number)
     }
 
     render() {

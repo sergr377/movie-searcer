@@ -12,20 +12,12 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
 
     },
-    // movieCard: {
-    //     width: '25%',
-    // },
 }));
-
-const style = {
-    display: "grid",
-}
 
 function CardArea(props) {
 
     const { toFavourites, removeFavourites } = props
 
-    const [spacing, setSpacing] = React.useState(2);
     const classes = useStyles();
 
     const pageNumber = props.pageNumber + 1
@@ -41,7 +33,7 @@ function CardArea(props) {
     return (
         <div >
             <InfiniteScroll
-                style={style}
+                style={{display: "grid"}}
                 dataLength={props.films.length}
                 next={fetchMoreData}
                 hasMore={true}
@@ -49,16 +41,16 @@ function CardArea(props) {
                 >
                 <Grid container className={classes.root}>
                     <Grid item xs={13}>
-                        <Grid container justify="center" spacing={spacing}>
+                        <Grid container justify="center" spacing={2}>
                             {props.films.map((data) => (
-                                <Grid key={!data ? '' : data.id} item className={classes.movieCard}>
+                                <Grid key={data.id} item className={classes.movieCard}>
                                     <MovieCard
                                         data={data}
                                         id={data.id}
-                                        original_title={!data ? '' : data.original_title}
-                                        poster_path={!data ? '' : data.poster_path}
-                                        vote_average={!data ? '' : data.vote_average}
-                                        release_date={!data ? '' : data.release_date}
+                                        original_title={data.original_title}
+                                        poster_path={data.poster_path}
+                                        vote_average={data.vote_average}
+                                        release_date={data.release_date}
                                         toFavourites={toFavourites}
                                         removeFavourites={removeFavourites}
                                         isFavorite={isFavorite(props.favoriteFilms, data.id)}
@@ -72,7 +64,7 @@ function CardArea(props) {
         </div >
     );
 }
-
+// сделать чистую функцию-------------------------------------------------------------------------------
 const mapStateToProps = state => ({
     favoriteFilms: state.favorite.favoriteFilms.map((data) => data.id)
 })

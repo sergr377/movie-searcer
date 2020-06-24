@@ -6,7 +6,6 @@ import { usersAPI } from '../../api/api';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
 
-
 class PopularContainer extends React.Component {
 
     componentDidMount() {
@@ -22,7 +21,6 @@ class PopularContainer extends React.Component {
     }
 
     render() {
-
         return <>
             <Popular
                 popularFilms={this.props. popularFilms}

@@ -1,8 +1,6 @@
 import React from 'react';
 import CardArea from '../CardComponents/CardArea';
 
-
-
 export default function Popular(props) {
 
     return (
