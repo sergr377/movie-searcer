@@ -5,7 +5,7 @@ import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import NewestContainer from './components/Newest/NewestContainer';
 import TopRatedContainer from './components/TopRated/TopRatedContainer';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { HashRouter , Route, Switch } from "react-router-dom";
 import FilmPageContainer from './components/FilmPage/FilmPageContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
 import PopularContainer from './components/Popular/PopularContainer';
@@ -14,7 +14,7 @@ import FavoriteContainer from './components/Favorite/FavoriteContainer';
 
 const App = () => {
   return (
-    <BrowserRouter basename="/">
+    <HashRouter  basename='/'>
       <Container maxWidth="md" style={{ padding: 0 }}>
         <NavbarContainer />
         <Typography component="div" style={{ backgroundColor: '#dfe6e9', minHeight: '100vh', height: '100%', paddingTop: '5px' }} >
@@ -34,7 +34,7 @@ const App = () => {
           </Switch>
         </Typography>
       </Container>
-    </BrowserRouter>
+    </HashRouter >
   )
 }
 
