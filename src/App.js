@@ -14,7 +14,7 @@ import FavoriteContainer from './components/Favorite/FavoriteContainer';
 
 const App = () => {
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename="/">
       <Container maxWidth="md" style={{ padding: 0 }}>
         <NavbarContainer />
         <Typography component="div" style={{ backgroundColor: '#dfe6e9', minHeight: '100vh', height: '100%', paddingTop: '5px' }} >
