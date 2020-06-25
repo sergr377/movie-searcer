@@ -10,6 +10,7 @@ import { useState } from 'react';
 const useStyles = makeStyles(() => ({
     typographyName: {
         fontSize: '1.7vh',
+        lineHeight: '2.5vh'
     },
     typographyScore: {
         fontSize: '1.8vh',
@@ -23,7 +24,8 @@ const useStyles = makeStyles(() => ({
     },
     cardContent: {
         padding: '0.8vh',
-        minHeight: '8vh'
+        minHeight: '8vh',
+        marginTop: '-0.5vh'
     },
     vote_average: {
         paddingTop: '1vh',
