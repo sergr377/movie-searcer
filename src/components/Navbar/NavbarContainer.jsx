@@ -4,6 +4,9 @@ import { searchMoviesThunkCreator } from '../../redux/searchBarReducers';
 import Navbar from './Navbar';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
+import { usersAPI } from '../../api/api';
+import { newFilmDetalAC, newFilmImagesAC, newCastAC } from '../../redux/filmPageReducers';
+
 
 
 class NavbarContainer extends React.Component {
@@ -16,13 +19,27 @@ class NavbarContainer extends React.Component {
         const value = e.target.value.toLowerCase()
         this.props.searchMovies(value)
     }
- 
+
+    setFilm = (e) => {
+        const searchFilmId = e.currentTarget.id
+        usersAPI.getMovie(searchFilmId).then(response => {
+            this.props.newFilmDetalAC(response);
+        });
+        usersAPI.getImages(searchFilmId).then(response => {
+            this.props.newFilmImagesAC(response);
+        });
+        usersAPI.getCast(searchFilmId).then(response => {
+            response.cast.splice(6)
+            this.props.newCastAC(response);
+        });
+    }
+
     render() {
         return <>
             <Navbar
                 results={this.props.results}
                 getQuery={this.getQuery}
-                setFilmId={this.props.setFilmId}
+                setFilmId={this.setFilm}
             />
         </>
     }
@@ -30,10 +47,10 @@ class NavbarContainer extends React.Component {
 
 let mapStateToProps = (state) => ({
     results: state.search.results,
-    setFilmId: state.film.filmId
+    //setFilmId: state.film.filmId
 })
 
 export default compose(
-    connect(mapStateToProps, { searchMovies: searchMoviesThunkCreator }),
+    connect(mapStateToProps, { searchMovies: searchMoviesThunkCreator, newFilmDetalAC, newFilmImagesAC, newCastAC }),
     withRouter
 )(NavbarContainer);

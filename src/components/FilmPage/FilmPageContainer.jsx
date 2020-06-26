@@ -22,6 +22,7 @@ class FilmPageContainer extends React.Component {
             response.cast.splice(6)
             this.props.newCastAC(response);
         });
+        window.scrollBy(0, -window.innerHeight)
     }
 
     render() {

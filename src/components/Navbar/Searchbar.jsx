@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputBase, fade, makeStyles } from '@material-ui/core';
+import { InputBase, fade, makeStyles, Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { StyledLinkDark } from '../../style/Styles';
 import Popper from '@material-ui/core/Popper';
@@ -71,12 +71,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SearchBar(props) {
 
-    document.addEventListener('click', function (e) {
-        if (e.target.id != 'simple-popper') {
-            setAnchorEl(false);
-            clearField()
-        }
-    });
 
     const classes = useStyles();
 
@@ -99,11 +93,11 @@ export default function SearchBar(props) {
     };
 
     const open = Boolean(anchorEl);
+
     const id = open ? 'simple-popper' : undefined;
 
-
     return (
-        <div id={'search'} className={classes.search}>
+        <div id={'search'} className={classes.search} onClick={handleClick}>
             <div className={classes.searchIcon}>
                 <SearchIcon />
             </div>
@@ -123,7 +117,7 @@ export default function SearchBar(props) {
                     {props.results.map(film =>
                         <StyledLinkDark to={{ pathname: '/FilmPage/' + (!film ? '' : film.id) }}>
                             <List className={classes.list}>
-                                <ListItem className='searchItem' alignItems="flex-start">
+                                <ListItem className='searchItem' alignItems="flex-start" id={!film ? '' : film.id} onClick={props.setFilmId}>
                                     <ListItemAvatar>
                                         <Avatar
                                             variant="square"

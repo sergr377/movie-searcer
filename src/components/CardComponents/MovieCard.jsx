@@ -74,7 +74,7 @@ const MovieCard = (props) => {
             setCount(true)
         }
     }
-
+    
     return (
         <StyledCard >
             <CardActionArea className={classes.cardActionArea} >

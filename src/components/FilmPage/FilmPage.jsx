@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 500,
   },
   paper2: {
-    padding: theme.spacing(2),
+    padding: 0,
     marginTop: 5,
     maxWidth: 800,
     margin: 'auto',
@@ -66,13 +66,6 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'nowrap',
     transform: 'translateZ(0)',
   },
-  title: {
-    color: theme.palette.primary.light,
-  },
-  titleBar: {
-    background:
-      'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-  },
   cardContent: {
     padding: 6
   },
@@ -81,7 +74,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#fff',
   },
   tabsBlock: {
-    marginTop: 10
+    marginTop: 10,
+  },
+  actorsGrid: {
+    maxHeight: 300,
   }
 }));
 
@@ -197,7 +193,6 @@ export default function FilmPage(props) {
             </TabPanel>
             <TabPanel value={value} index={1} dir={theme.direction}>
               {/*--------------------------------------------------------- slider--------------------------------------------------------- */}
-              <div className={classes.slider}>
                 <GridList className={classes.gridList} cols={2.5}>
                   {props.images.map((tile) => (
                     <GridListTile key={tile.file_path}>
@@ -205,16 +200,9 @@ export default function FilmPage(props) {
                         src={'https://image.tmdb.org/t/p/w500_and_h282_face' + tile.file_path}
                         alt={tile.file_path}
                         onClick={handleToggle} />
-                      <GridListTileBar
-                        classes={{
-                          root: classes.titleBar,
-                          title: classes.title,
-                        }}
-                      />
                     </GridListTile>
                   ))}
                 </GridList>
-              </div>
             </TabPanel>
             {/*--------------------------------------------------------- overview--------------------------------------------------------- */}
             <TabPanel value={value} index={2} dir={theme.direction}>

@@ -24,6 +24,7 @@ function Navbar(props) {
             <SearchBar
               getQuery={props.getQuery}
               results={props.results}
+              setFilmId={props.setFilmId}
             />
             <Grid className='navButton'>
               <StyledLinkLight to={'/topRated'} >

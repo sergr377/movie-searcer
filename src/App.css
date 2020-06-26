@@ -30,3 +30,20 @@
     align-items: center
   }
 }
+
+@media screen and (max-width: 1920) {
+  .gridList {
+    flex-wrap: nowrap;
+    transform: translateZ(0);
+    justify-content: space-around;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  .gridList {
+    flex-wrap: wrap;
+    transform: translateZ(0);
+    justify-content: space-around;
+
+  }
+}
