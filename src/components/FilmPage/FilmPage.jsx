@@ -131,13 +131,13 @@ export default function FilmPage(props) {
                   {props.film.tagline}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Жанр: {filmGenres}
+                  Genre: {filmGenres}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Рейтинг: {props.film.vote_average}
+                  Rating: {props.film.vote_average}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Дата выхода: {props.film.release_date}
+                 Release date: {props.film.release_date}
                 </Typography>
               </Grid>
             </Grid>
