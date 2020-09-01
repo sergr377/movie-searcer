@@ -13,6 +13,7 @@ class NavbarContainer extends React.Component {
 
     componentDidMount() {
         this.props.searchMovies()
+        console.log("test")
     }
 
     getQuery = (e) => {
@@ -46,8 +47,7 @@ class NavbarContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-    results: state.search.results,
-    //setFilmId: state.film.filmId
+    results: state.search.results
 })
 
 export default compose(

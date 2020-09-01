@@ -1,8 +1,8 @@
 import React from 'react';
-import { Button, Toolbar, fade, makeStyles, Grid, AppBar } from '@material-ui/core';
+import { Button, Toolbar, makeStyles, Grid, AppBar } from '@material-ui/core';
 import { StyledLinkLight } from '../../style/Styles';
 import SearchBar from './Searchbar';
-import { useState } from 'react';
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,19 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar(props) {
 
+  let { id } = useParams();
+  
   const classes = useStyles();
-
-  const [currentButton, setButton] = useState('topRated');
-
-  const changeButton = () => {
-    let promise = new Promise(function (resolve, reject) {
-      setTimeout(() => resolve(window.location.hash.slice(2)), 50);
-    });
-    promise.then(
-      result => setButton(result),
-      error => alert(error)
-    );
-  };
 
   return (
     <div className={classes.root}>
@@ -44,16 +34,16 @@ function Navbar(props) {
             />
             <Grid className='navButton'>
               <StyledLinkLight to={'/topRated'} >
-                <Button className={classes.button} variant={currentButton === 'topRated' ? 'outlined' : 'text'} color="inherit" onClick={() => changeButton()}>Top rated</Button>
+                <Button className={classes.button} variant={id === 'topRated' ? 'outlined' : 'text'} color="inherit" >Top rated</Button>
               </StyledLinkLight>
               <StyledLinkLight to={'/newest'} >
-                <Button className={classes.button} variant={currentButton === 'newest' ? 'outlined' : 'text'} color="inherit" onClick={() => changeButton()}>Newest</Button>
+                <Button className={classes.button} variant={id === 'newest' ? 'outlined' : 'text'} color="inherit" >Newest</Button>
               </StyledLinkLight>
               <StyledLinkLight to={'/popular'} >
-                <Button className={classes.button} variant={currentButton === 'popular' ? 'outlined' : 'text'} color="inherit" onClick={() => changeButton()}>Popular</Button>
+                <Button className={classes.button} variant={id === 'popular' ? 'outlined' : 'text'} color="inherit">Popular</Button>
               </StyledLinkLight>
               <StyledLinkLight to={'/favorite'}>
-                <Button className={classes.button} variant={currentButton === 'favorite' ? 'outlined' : 'text'} color="inherit" onClick={() => changeButton()}>Favorite</Button>
+                <Button className={classes.button} variant={id === 'favorite' ? 'outlined' : 'text'} color="inherit" >Favorite</Button>
               </StyledLinkLight>
             </Grid>
           </Grid>
